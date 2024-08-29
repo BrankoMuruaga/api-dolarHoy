@@ -1,5 +1,5 @@
 import { JSDOM } from "jsdom";
-import { TIPOS } from "../utils/tipos.js";
+import { TIPOS, NOMBRE_DE_TIPOS } from "../utils/tipos.js";
 
 export class CotizacionModel {
   static async getCotizacion({ url }) {
@@ -33,7 +33,7 @@ export class CotizacionModel {
     const url = `https://www.dolarhoy.com/${tipo}`;
     const { compra, venta } = await this.getCotizacion({ url });
 
-    tipo = tipo.replaceAll("-", "").replace("cotizaciondolar", "");
+    tipo = NOMBRE_DE_TIPOS.find((item) => item.tipo == tipo).nombre;
 
     return {
       tipo,
