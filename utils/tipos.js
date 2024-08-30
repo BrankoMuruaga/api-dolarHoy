@@ -1,4 +1,4 @@
-export const TIPOS = {
+export const NOMBRE_DE_ENDPOINTS = {
   BLUE: "cotizaciondolarblue",
   OFICIAL: "cotizaciondolaroficial",
   BOLSA: "cotizaciondolarbolsa",
@@ -6,10 +6,26 @@ export const TIPOS = {
   TARJETA: "cotizacion-dolar-tarjeta",
 };
 
-export const NOMBRE_DE_TIPOS = [
-  { tipo: TIPOS.BLUE, nombre: "Dólar Blue" },
-  { tipo: TIPOS.OFICIAL, nombre: "Dólar Oficial" },
-  { tipo: TIPOS.BOLSA, nombre: "Dólar Bolsa" },
-  { tipo: TIPOS.CONT_LIQUI, nombre: "Dólar Contado con Liqui" },
-  { tipo: TIPOS.TARJETA, nombre: "Dólar Tarjeta" },
+export const TIPOS = [
+  { tipo: "blue", endPoint: NOMBRE_DE_ENDPOINTS.BLUE, nombre: "Dólar Blue" },
+  {
+    tipo: "bolsa",
+    endPoint: NOMBRE_DE_ENDPOINTS.BOLSA,
+    nombre: "Dólar Bolsa",
+  },
+  {
+    tipo: "contadoConLiqui",
+    endPoint: NOMBRE_DE_ENDPOINTS.CONT_LIQUI,
+    nombre: "Dólar Contado con Liqui",
+  },
+  {
+    tipo: "oficial",
+    endPoint: NOMBRE_DE_ENDPOINTS.OFICIAL,
+    nombre: "Dólar Oficial",
+  },
+  {
+    tipo: "tarjeta",
+    endPoint: NOMBRE_DE_ENDPOINTS.TARJETA,
+    nombre: "Dólar Tarjeta",
+  },
 ];

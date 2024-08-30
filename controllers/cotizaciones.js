@@ -3,41 +3,25 @@ import { TIPOS } from "../utils/tipos.js";
 
 export class CotizacionController {
   static async getAll(req, res) {
+    res.header("Access-Control-Allow-Origin", "*");
     const cotizaciones = await CotizacionModel.all();
     return res.json(cotizaciones);
   }
 
-  static async getBlue(req, res) {
-    const cotizacion = await CotizacionModel.find({
-      tipo: TIPOS.BLUE,
-    });
-    return res.json(cotizacion);
-  }
+  static async getCotizacion(req, res) {
+    res.header("Access-Control-Allow-Origin", "*");
+    const endPoint = TIPOS.find(
+      (item) => req.params.tipo == item.tipo
+    )?.endPoint;
 
-  static async getOficial(req, res) {
-    const cotizacion = await CotizacionModel.find({
-      tipo: TIPOS.OFICIAL,
-    });
-    return res.json(cotizacion);
-  }
+    if (!endPoint) {
+      return res
+        .status(404)
+        .json({ error: "Tipo de cotización no encontrado" });
+    }
 
-  static async getBolsa(req, res) {
     const cotizacion = await CotizacionModel.find({
-      tipo: TIPOS.BOLSA,
-    });
-    return res.json(cotizacion);
-  }
-
-  static async getContLiqui(req, res) {
-    const cotizacion = await CotizacionModel.find({
-      tipo: TIPOS.CONT_LIQUI,
-    });
-    return res.json(cotizacion);
-  }
-
-  static async getTarjeta(req, res) {
-    const cotizacion = await CotizacionModel.find({
-      tipo: TIPOS.TARJETA,
+      endPoint,
     });
     return res.json(cotizacion);
   }

@@ -1,5 +1,5 @@
 import { JSDOM } from "jsdom";
-import { TIPOS, NOMBRE_DE_TIPOS } from "../utils/tipos.js";
+import { TIPOS, NOMBRE_DE_ENDPOINTS } from "../utils/tipos.js";
 
 export class CotizacionModel {
   static async getCotizacion({ url }) {
@@ -29,11 +29,11 @@ export class CotizacionModel {
     }
   }
 
-  static async find({ tipo }) {
-    const url = `https://www.dolarhoy.com/${tipo}`;
+  static async find({ endPoint }) {
+    const url = `https://www.dolarhoy.com/${endPoint}`;
     const { compra, venta } = await this.getCotizacion({ url });
 
-    tipo = NOMBRE_DE_TIPOS.find((item) => item.tipo == tipo).nombre;
+    const tipo = TIPOS.find((item) => item.endPoint == endPoint).nombre;
 
     return {
       tipo,
@@ -44,16 +44,16 @@ export class CotizacionModel {
 
   static async all() {
     const cotizaciones = [
-      { tipo: TIPOS.BLUE },
-      { tipo: TIPOS.OFICIAL },
-      { tipo: TIPOS.BOLSA },
-      { tipo: TIPOS.CONT_LIQUI },
-      { tipo: TIPOS.OFICIAL },
+      { endPoint: NOMBRE_DE_ENDPOINTS.BLUE },
+      { endPoint: NOMBRE_DE_ENDPOINTS.OFICIAL },
+      { endPoint: NOMBRE_DE_ENDPOINTS.BOLSA },
+      { endPoint: NOMBRE_DE_ENDPOINTS.CONT_LIQUI },
+      { endPoint: NOMBRE_DE_ENDPOINTS.OFICIAL },
     ];
 
     return Promise.all(
-      cotizaciones.map(async ({ tipo }) => {
-        return await this.find({ tipo });
+      cotizaciones.map(async ({ endPoint }) => {
+        return await this.find({ endPoint });
       })
     );
   }
